@@ -4,7 +4,7 @@ import ShowPassword from "../showpassword/ShowPassword";
 
 function Manager () {
 
-    const [formData, setFormData] = useState({site:"", username: "", password: "", id: (new Date()).getTime()})
+    const [formData, setFormData] = useState({site:"", username: "", password: "", id: (new Date()).getTime(),})
     const [allData, setAllData] = useState([])
 
 
@@ -12,7 +12,6 @@ function Manager () {
         e.preventDefault()
         setAllData([...allData, formData])
         localStorage.setItem('allData', JSON.stringify([...allData, formData]));
-        // localStorage.setItem("countId", JSON.stringify([...allData, id:allData.length]))
         setFormData({
             id: (new Date()).getTime(),
             site:"", 
@@ -25,12 +24,14 @@ function Manager () {
         const storedUsers = localStorage.getItem('allData');
         if (storedUsers) {
             setAllData(JSON.parse(storedUsers));
-            // console.log("last count id is", allData.length+1)
-            // setFormData(JSON.parse({...formData, id : allData.length+1}))
         }
     }, []);
 
 
+    function deletePass (id) {
+        let updateList = allData.filter((data) => data.id != id)
+        setAllData(updateList)
+    }
     
     return (
         <>
@@ -84,6 +85,7 @@ function Manager () {
                                                         key={item.id} data={item}
                                                         keyNo={item.id}
                                                         username={item.username}
+                                                        delete={() => deletePass(item.id)}
                     />)}
                 </tbody>
             </table>
