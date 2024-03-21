@@ -1,8 +1,8 @@
 
 
-function ShowPassword ({username}) {
+function ShowPassword ({username, keyNo}) {
 
-    console.log("prop is", username)
+    // console.log("prop is", username)
     // console.log("site", props.prop.site)
     // console.log("password", prop.prop.password)
     // console.log("username", prop.prop.username)
@@ -11,7 +11,7 @@ function ShowPassword ({username}) {
         <>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    1
+                    {keyNo}
                 </th>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     {username}
