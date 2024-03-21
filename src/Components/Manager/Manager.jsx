@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ShowPassword from "../showpassword/ShowPassword";
+import toast from "react-hot-toast";
 
 
 function Manager () {
@@ -13,10 +14,10 @@ function Manager () {
         setAllData([...allData, formData])
         localStorage.setItem('allData', JSON.stringify([...allData, formData]));
         setFormData({
-            id: (new Date()).getTime(),
             site:"", 
             username: "", 
             password: "",
+            id: (new Date()).getTime(),
         })
         
     }
@@ -31,6 +32,8 @@ function Manager () {
     function deletePass (id) {
         let updateList = allData.filter((data) => data.id != id)
         setAllData(updateList)
+        localStorage.setItem("allData", JSON.stringify([...updateList]))
+        toast.success("Password Deleted!")
     }
     
     return (

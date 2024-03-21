@@ -1,12 +1,8 @@
 
 
 function ShowPassword (props) {
-    console.log("props is", props.data)
- 
-    // console.log("prop is", username)
-    // console.log("site", props.prop.site)
-    // console.log("password", prop.prop.password)
-    // console.log("username", prop.prop.username)
+
+    // console.log(props.data.site)
 
     return (
         <>
@@ -15,13 +11,13 @@ function ShowPassword (props) {
                     1
                 </th>
                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    vishnu
+                    Google.com
                 </th>
                 <td className="px-6 py-4">
-                    dsalkfjew
+                    Vishnu
                 </td>
                 <td className="px-6 py-4">
-                    dfkjalk309i32
+                    vishnu@123
                 </td>
                 <td className="px-6 py-4">
                     <button type="button" className="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
