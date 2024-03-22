@@ -9,6 +9,7 @@ function Manager () {
     const [allData, setAllData] = useState([])
 
 
+
     function handleForm (e) {
         e.preventDefault()
         setAllData([...allData, formData])
@@ -19,6 +20,7 @@ function Manager () {
             password: "",
             id: (new Date()).getTime(),
         })
+        toast.success("Added New Entry!")
         
     }
     useEffect(() => {
@@ -36,6 +38,20 @@ function Manager () {
         toast.success("Password Deleted!")
     }
     
+    function updatedData (newData, newId){
+
+        const updatedData = allData.map((data) => {
+            if(data.id === newId){
+
+                return {...data, site:newData.site, username:newData.username, password: newData.password, id:newId}
+            }
+            else{
+                return data;
+            }
+        })
+        setAllData(updatedData)
+        localStorage.setItem("allData", JSON.stringify(updatedData))
+    }
     return (
         <>
 
@@ -85,10 +101,10 @@ function Manager () {
                 <tbody>
 
                     {allData && allData.map((item) => <ShowPassword  
-                                                        key={item.id} data={item}
-                                                        keyNo={item.id}
-                                                        username={item.username}
+                                                        key={item.id} 
+                                                        data={item}
                                                         delete={() => deletePass(item.id)}
+                                                        editData={(newdata) => updatedData(newdata, item.id)}
                     />)}
                 </tbody>
             </table>
