@@ -1,40 +1,34 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import LoginProvider from "../contextApi/LoginProvider";
 
 function Demo () {
 
-    const [data, setData] = useState({email:"", password: ""})
+    const [namedata, setName] = useState({name: "", pass: ""})
+    const {setUser} = useContext(LoginProvider)
 
-    function handleFormSubmit(e) {
-        e.preventDefault()
+    console.log("nameData is", namedata)
+    function handleForm (e) {
         const {name, value} = e.target;
-        setData({...data, [name]:value})
-
-        console.log("Data is inside", data)
+        setName({...namedata, [name]: value})
     }
 
-    function formDataHandled (e) {
+    function dataHandle(e) {
+        console.log("onSubmit called")
         e.preventDefault()
-
-        // console.log("Data is outside", data)
+        setUser(namedata)
     }
 
-    
     return (
-        // <h1>Hello demo</h1>
-        <div>
-            <form action="" onSubmit={handleFormSubmit}>
-                <div>
-                    <input type="email" name="email" placeholder="email" value={data.email}  onChange={formDataHandled}/>
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="password" value={data.password} onChange={formDataHandled}/>
-                </div>
-                <input type="submit"  className="bg-blue-500 w-64  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" />
-                {/* <button>Submit</button> */}
+        <>
+            <form action="" onSubmit={dataHandle}>
+                <input type="text" name="name" value={namedata.name} onChange={handleForm} placeholder="Name" /> <br />
+                <input type="password" name="pass" value={namedata.pass} onChange={handleForm} placeholder="Password" /> <br />
+                <button>Submit</button>
             </form>
-                {/* <input type="submit" onClick={formDataHandled} className="bg-blue-500 w-64  hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" /> */}
-        </div>
+        </>
     )
+
+
 }
 
 export default Demo;

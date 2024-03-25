@@ -1,28 +1,38 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ShowPassword from "../showpassword/ShowPassword";
 import toast from "react-hot-toast";
+import InputContext from "../contextApi/InputProvider";
+
 
 
 function Manager () {
 
-    const [formData, setFormData] = useState({site:"", username: "", password: "", id: (new Date()).getTime(),})
+    const [formData, setFormData] = useState({site:"", username: "", password: "", id: (new Date()).getTime()})
+
     const [allData, setAllData] = useState([])
+    const {searchTerm} = useContext(InputContext)
 
 
 
-    function handleForm (e) {
-        e.preventDefault()
-        setAllData([...allData, formData])
-        localStorage.setItem('allData', JSON.stringify([...allData, formData]));
-        setFormData({
-            site:"", 
-            username: "", 
-            password: "",
-            id: (new Date()).getTime(),
-        })
-        toast.success("Added New Entry!")
+    const searchItemarray = allData.filter((item) => item.username.toLowerCase().includes(searchTerm.toLowerCase()))
+    console.log("searced item is", searchItemarray)
+    
+
         
-    }
+        function handleForm (e) {
+            e.preventDefault()
+            setAllData([...allData, formData])
+            localStorage.setItem('allData', JSON.stringify([...allData, formData]));
+            setFormData({
+                site:"", 
+                username: "", 
+                password: "",
+                id: (new Date()).getTime(),
+            })
+            toast.success("Added New Entry!")
+            
+        }
+        // console.log("searchUser is :->", searchUser)
     useEffect(() => {
         const storedUsers = localStorage.getItem('allData');
         if (storedUsers) {
@@ -98,15 +108,28 @@ function Manager () {
                         </th>
                     </tr>
                 </thead>
-                <tbody>
 
-                    {allData && allData.map((item) => <ShowPassword  
-                                                        key={item.id} 
-                                                        data={item}
-                                                        delete={() => deletePass(item.id)}
-                                                        editData={(newdata) => updatedData(newdata, item.id)}
-                    />)}
-                </tbody>
+        {
+            (searchItemarray) ? 
+            <tbody>
+
+            {searchItemarray && searchItemarray.map((item) => <ShowPassword  
+                                                key={item.id} 
+                                                data={item}
+                                                delete={() => deletePass(item.id)}
+                                                editData={(newdata) => updatedData(newdata, item.id)}
+                                                />)}
+            </tbody> : 
+            <tbody>
+
+            {allData && allData.map((item) => <ShowPassword  
+                                                key={item.id} 
+                                                data={item}
+                                                delete={() => deletePass(item.id)}
+                                                editData={(newdata) => updatedData(newdata, item.id)}
+                                                />)}
+        </tbody>
+        }
             </table>
         </div>
 

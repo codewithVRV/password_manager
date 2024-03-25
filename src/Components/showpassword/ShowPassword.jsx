@@ -3,6 +3,7 @@ import { useState } from "react";
 
 function ShowPassword (props) {
 
+    // console.log("props is", props)
     const [isEdit, setIsEdit] = useState(false)
     const [updatedData, setUpdatedData] = useState({site: "", username: "", password: ""})
 
