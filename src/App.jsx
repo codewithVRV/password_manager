@@ -3,8 +3,6 @@ import ShowPassword from "./Components/showpassword/ShowPassword";
 import NavBar from "./Components/NavBar/NavBar";
 import { useState } from "react";
 import InputContext from "./Components/contextApi/InputProvider";
-import ModalBox from "./Components/Form Modal/Modal";
-// import Modal from "./Components/Form Modal/Modal";
 
 
 

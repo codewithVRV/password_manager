@@ -13,15 +13,13 @@ function Manager () {
 
     const [allData, setAllData] = useState([])
     const [oneData, setOneData] = useState([])
+    const [againRender, setAgainRender] = useState(false)
     const {searchTerm} = useContext(InputContext)
 
 
 
-    // let searchItemarray = allData.filter((item) => item.username.toLowerCase().includes(searchTerm.toLowerCase()))
 
-    // setDataArr(searchItemarray)
     
-    console.log("all data is", allData)
     
 
         function handleForm (e) {
@@ -42,9 +40,10 @@ function Manager () {
             if (storedUsers) {
                 setAllData(JSON.parse(storedUsers));
             }
-            // console.log("middle")
 
-        }, []);
+
+        }, [againRender]);
+        console.log("current rerender state is", againRender)
          
         useEffect(() => {
             if(searchTerm) {
@@ -77,7 +76,12 @@ function Manager () {
         })
         setAllData(updatedData)
         localStorage.setItem("allData", JSON.stringify(updatedData))
+
     }
+        function handleRender () {
+            setOneData({site:"", username: "", password: "", id: ""})
+            setAgainRender(true)
+        }
     return (
         <>
 
@@ -132,7 +136,7 @@ function Manager () {
             {oneData  && oneData.map((item) => <ModalBox  
                                                 key={item.id} 
                                                 data={item}
-                                                
+                                                allListRender={() => handleRender()}
                                                 />)}
             </tbody> : 
             <tbody>

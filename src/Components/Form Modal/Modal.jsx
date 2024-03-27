@@ -1,10 +1,13 @@
 import  { useState } from "react";
 
 function ModalBox(props) {
+
+    console.log("props is", props)
     const [isOpen, setIsOpen] = useState(true);
 
     const closeModal = () => {
         setIsOpen(false);
+        props.allListRender()
     };
 
     return (
