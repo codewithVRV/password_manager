@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import ShowPassword from "../showpassword/ShowPassword";
 import toast from "react-hot-toast";
 import InputContext from "../contextApi/InputProvider";
+import ModalBox from "../Form Modal/Modal";
+// import ModalBox from "../Form Modal/Modal";
 
 
 
@@ -10,15 +12,18 @@ function Manager () {
     const [formData, setFormData] = useState({site:"", username: "", password: "", id: (new Date()).getTime()})
 
     const [allData, setAllData] = useState([])
+    const [oneData, setOneData] = useState([])
     const {searchTerm} = useContext(InputContext)
 
 
 
-    const searchItemarray = allData.filter((item) => item.username.toLowerCase().includes(searchTerm.toLowerCase()))
-    console.log("searced item is", searchItemarray)
+    // let searchItemarray = allData.filter((item) => item.username.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    // setDataArr(searchItemarray)
+    
+    console.log("all data is", allData)
     
 
-        
         function handleForm (e) {
             e.preventDefault()
             setAllData([...allData, formData])
@@ -32,14 +37,25 @@ function Manager () {
             toast.success("Added New Entry!")
             
         }
-        // console.log("searchUser is :->", searchUser)
-    useEffect(() => {
-        const storedUsers = localStorage.getItem('allData');
-        if (storedUsers) {
-            setAllData(JSON.parse(storedUsers));
-        }
-    }, []);
+        useEffect(() => {
+            const storedUsers = localStorage.getItem('allData');
+            if (storedUsers) {
+                setAllData(JSON.parse(storedUsers));
+            }
+            // console.log("middle")
 
+        }, []);
+         
+        useEffect(() => {
+            if(searchTerm) {
+                console.log("Inside searchTerm")
+                let searchItemarray = allData.filter((item) => item.username.toLowerCase().includes(searchTerm.toLowerCase()))
+                setOneData(searchItemarray)
+            }
+            console.log("use effect called by search term")
+        }, [searchTerm])
+
+    console.log("search item array is", oneData)
 
     function deletePass (id) {
         let updateList = allData.filter((data) => data.id != id)
@@ -110,14 +126,13 @@ function Manager () {
                 </thead>
 
         {
-            (searchItemarray) ? 
+            (oneData.length>0) ? 
             <tbody>
 
-            {searchItemarray && searchItemarray.map((item) => <ShowPassword  
+            {oneData  && oneData.map((item) => <ModalBox  
                                                 key={item.id} 
                                                 data={item}
-                                                delete={() => deletePass(item.id)}
-                                                editData={(newdata) => updatedData(newdata, item.id)}
+                                                
                                                 />)}
             </tbody> : 
             <tbody>
