@@ -15,7 +15,7 @@ function NavBar (){
 
     return (
         <nav
-        className="relative flex w-full flex-wrap items-center justify-between bg-zinc-50 py-2 shadow-dark-mild dark:bg-neutral-700 lg:py-4">
+        className="relative flex w-full flex-wrap items-center justify-between bg-zinc-50 py-2 shadow-dark-mild dark:bg-gray-800 lg:py-4">
         <div className="flex w-full flex-wrap items-center justify-between px-3">
           <span className="ms-2 text-xl text-black dark:text-white">Password Manager</span>
           <div className="ms-5 flex w-[30%] items-center justify-between">
@@ -25,7 +25,7 @@ function NavBar (){
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               className="relative m-0 block w-[1px] min-w-0 flex-auto rounded border border-solid border-secondary-500 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-surface transition duration-300 ease-in-out focus:border-primary focus:text-black-700 focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:bg-body-dark dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill"
-              placeholder="Search"
+              placeholder="Search by username"
               aria-label="Search"
               aria-describedby="button-addon2" />
 

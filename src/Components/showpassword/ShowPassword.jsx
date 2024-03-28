@@ -3,21 +3,20 @@ import { useState } from "react";
 
 function ShowPassword (props) {
 
-    // console.log("props is", props)
     const [isEdit, setIsEdit] = useState(false)
-    const [updatedData, setUpdatedData] = useState({site: "", username: "", password: ""})
+    const [updatedData, setUpdatedData] = useState(props.data)
 
     return (
         <>
             {props.data && <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {/* <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     1
-                </th>
+                </th> */}
                 <td className="px-6 py-4">
                 {
                 (isEdit) ? <input type="text" name="site" value={updatedData.site} placeholder="new user-name..." 
                                 onChange={(e) => setUpdatedData({...updatedData, site : e.target.value})}
-                            className=" px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                            className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.site}</p>
                 }
                 </td>
@@ -25,7 +24,7 @@ function ShowPassword (props) {
                 {
                 (isEdit) ? <input type="text" name="username" value={updatedData.username} placeholder="new user-name..." 
                                 onChange={(e) => setUpdatedData({...updatedData, username : e.target.value})}
-                                className=" px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                                className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.username}</p>
                 }
                 </td>
@@ -33,7 +32,7 @@ function ShowPassword (props) {
                 {
                 (isEdit) ? <input type="text" name="password" value={updatedData.password} placeholder="new password..." 
                                 onChange={(e) => setUpdatedData({...updatedData, password : e.target.value})}
-                                className=" px-4 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                                className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.password}</p>
                 }
                 </td>
@@ -49,7 +48,7 @@ function ShowPassword (props) {
                 </td>
                 <td className="px-6 py-4">
                     
-                    <button type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                    <button type="button" className="focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
                         onClick={() => {
                             props.delete()
                         }}
