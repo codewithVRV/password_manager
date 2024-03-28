@@ -16,7 +16,7 @@ function ShowPassword (props) {
                 {
                 (isEdit) ? <input type="text" name="site" value={updatedData.site} placeholder="new user-name..." 
                                 onChange={(e) => setUpdatedData({...updatedData, site : e.target.value})}
-                            className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                            className=" px-4 py-2 w-28 sm:w-auto text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.site}</p>
                 }
                 </td>
@@ -24,7 +24,7 @@ function ShowPassword (props) {
                 {
                 (isEdit) ? <input type="text" name="username" value={updatedData.username} placeholder="new user-name..." 
                                 onChange={(e) => setUpdatedData({...updatedData, username : e.target.value})}
-                                className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                                className=" px-4 py-2 w-28 sm:w-auto text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.username}</p>
                 }
                 </td>
@@ -32,7 +32,7 @@ function ShowPassword (props) {
                 {
                 (isEdit) ? <input type="text" name="password" value={updatedData.password} placeholder="new password..." 
                                 onChange={(e) => setUpdatedData({...updatedData, password : e.target.value})}
-                                className=" px-4 py-2 text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
+                                className=" px-4 py-2 w-28 sm:w-auto text-black bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500 focus:ring-blue-500"/>
                             : <p>{props.data.password}</p>
                 }
                 </td>
